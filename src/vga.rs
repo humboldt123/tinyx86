@@ -1,5 +1,4 @@
-use volatile::Volatile;
-
+/*    vga boilerplate    */
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
@@ -42,6 +41,8 @@ struct ScreenChar {
 const BUF_HEIGHT: usize = 25;
 const BUF_WIDTH: usize = 80;
 
+use volatile::Volatile;
+
 #[repr(transparent)]
 struct Buffer {
     chars: [[Volatile<ScreenChar>; BUF_WIDTH]; BUF_HEIGHT],
@@ -52,7 +53,10 @@ pub struct Writer {
     color: ColorCode,
     buffer: &'static mut Buffer,
 }
+/*************************/
 
+
+/*    vga interface    */
 use core::fmt;
 
 impl Writer {
@@ -122,7 +126,10 @@ lazy_static! {
         buffer:		unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
+/***********************/
 
+
+/*    macros    */
 #[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => ($crate::vga::_print(format_args!($($arg)*)));
@@ -139,3 +146,30 @@ pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
     WRITER.lock().write_fmt(args).unwrap();
 }
+/****************/
+
+
+/*    tests    */
+#[test_case]
+fn test_println_simple() {
+	println!("test_println_simple output");
+}
+
+#[test_case]
+fn test_println_many() {
+	for i in 0..100 {
+		println!("test_println_many output #{}", i);
+	}
+}
+
+#[test_case]
+fn test_println_output() {
+	let string = "testing println string output";
+	println!("{}", string);
+
+	for(i, char) in string.chars().enumerate() {
+		let screen_char = WRITER.lock().buffer.chars[BUF_HEIGHT - 2][i].read();
+		assert_eq!(char::from(screen_char.char), char);
+	}
+}
+/***************/
