@@ -5,7 +5,8 @@ mod vga;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("hello, world! {}", ":D");
+    println!("hello, world! {} {}", ":D", 999);
+	panic!("panic test");
 
     loop {}
 }
