@@ -2,4 +2,5 @@
 a proof-of-concept for x86 baremetal development in Rust (note: bootloader not included!)
 
 ### building
-`make`
+build 		- `cargo bootimage`
+emulation	- `qemu-system-x86_64` 
