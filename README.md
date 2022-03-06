@@ -1,6 +1,5 @@
 ## helloworld-x86
-a proof-of-concept for x86 baremetal development in Rust (note: bootloader not included!)
+a work-in-progress microkernel for experimenting with x86 baremetal development in Rust
 
 ### building
-build 		- `cargo bootimage`
-emulation	- `qemu-system-x86_64` 
+`cargo run` will automatically build a bootable image and emulate it using `qemu-system-x86_64`
