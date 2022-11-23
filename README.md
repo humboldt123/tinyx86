@@ -1,4 +1,6 @@
 ![tinyx86 logo alt](https://github.com/amada95/tinyx86/blob/main/images/logo_readme_transparent.png)
+<br>
+<br>
 a work-in-progress kernel for experimenting with x86 baremetal development in Rust
 
 ### dependencies
