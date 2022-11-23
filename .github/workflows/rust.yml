@@ -1,4 +1,4 @@
-name: build
+name: Build from source
 
 on:
   push:
@@ -10,13 +10,11 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      
     - name: Build
       uses: actions-rs/toolchain@v1
       with:
