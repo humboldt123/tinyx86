@@ -5,7 +5,7 @@ edition = "2021"
 
 
 [dependencies]
-bootloader = "0.9.8"
+bootloader = "0.10.13"
 x86_64 = "0.14.2"
 uart_16550 = "0.2.0"
 volatile = "0.2.6"
