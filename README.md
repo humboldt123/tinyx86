@@ -10,5 +10,8 @@ a work-in-progress kernel for experimenting with x86 baremetal development in Ru
 - `cargo build`
 - `cargo bootimage`
 - `qemu-system-x86_64 target/x86_64-tinyx86/debug/tinyx86`
-<br>
 note: you may need to run `rustup update nightly --force` first to ensure all nightly components are properly installed
+
+### testing
+`cargo test` will initialize tinyx86's test framework and run tests.
+
