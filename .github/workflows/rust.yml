@@ -15,14 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
-      run: cargo test --verbose
+    - run: cargo test --verbose
   
   run:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build and Emulate
-      run: sudo apt-get -qqy update
-      run: sudo apt-get -qqy install qemu-system-x86
-      run: cargo run --verbose
+    - run: sudo apt-get -qqy update
+    - run: sudo apt-get -qqy install qemu-system-x86
+    - run: cargo run --verbose
   
